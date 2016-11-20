@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us" >
+<meta charset="utf-8">
+<head>
+<title>Log in | Django site admin</title>
+<link rel="stylesheet" type="text/css" href="/static/myapp/css/base.css" />           <!-- 此处采用的是django内部布局   -->
+<link rel="stylesheet" type="text/css" href="/static/myapp/css/login.css" />
+<meta name="robots" content="NONE,NOARCHIVE" />
+
+<div id="container">
+<!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/myapp/register/">校园助手注册</a></h1> 
+
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+	
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+
+<div id="content-main">
+<form method = "post" action ="" >
+
+          {% csrf_token %}
+           {{uform.as_p}}
+           {{errors}}
+		    </br>
+      <div class="submit-row">
+          <label>&nbsp;</label><input type="submit" value="注册" />
+      </div>
+
+
+
+</div>       
+        <br class="clear" />
+    </div>
+</form>
+<h3 id="site-name"><a href="/myapp/login/"> 返回登录</a></h3>    <!--此处为一个链接-->
+</body>
+</html>
+
+
