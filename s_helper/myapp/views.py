@@ -25,10 +25,10 @@ def login (request):                          #登录
 
                   if (len(userResult)>0):  #表示有此人
 
-                        return render_to_response('myapp/success.html' , {'operation':"登录"})  //弹出登录成功页面
+                        return render_to_response('myapp/success.html' , {'operation':"登录"})  #出登录成功页面
 
                   else:
-                        return HttpResponse("该用户不存在")                 //登录失败
+                        return HttpResponse("该用户不存在")                 #登录失败
       else:
             uform = userFormlogin()
 
@@ -58,7 +58,7 @@ def register(request):
                        return render(request,"myapp/userRegister.html",{"errors":errors})
                   else:
                         password1 = uform.cleaned_data['password1']
-                        password2 = uform.cleaned_data['password2']            //得到表单
+                        password2 = uform.cleaned_data['password2']            #到表单
 
                         if (password1 !=password2):
                               errors.append("密码不一样请重新输入")
