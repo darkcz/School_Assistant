@@ -68,7 +68,7 @@ def register(request):
                               email = uform.cleaned_data['email']
                               password = password1
 
-                              user = User.objects.create(username=username,password=password,email=email)       '''写入数据库'''
+                              user = User.objects.create(username=username,password=password,email=email)       #'''写入数据库'''
                               user.save()
                               uform = userFormlogin()
                               return render_to_response("myapp/userRegister.html",{"errors":"注册成功"})
