@@ -83,13 +83,11 @@ public class MainActivity extends AppCompatActivity {
                                 http_url=new URL(url);
                                 if(http_url!=null)
                                 {
-                                    //打开一个HttpURLConnection连接
+                                    //打开HttpURLConnection连接
                                     HttpURLConnection conn = (HttpURLConnection) http_url.openConnection();
                                     conn.setConnectTimeout(5* 1000);//设置连接超时
-                                    conn.setRequestMethod("GET");//以get方式发起请求
-                                    //允许输入流
+                                    conn.setRequestMethod("GET");
                                     conn.setDoInput(true);
-                                    //接收服务器响应
                                     if (conn.getResponseCode() == 200) {
                                         InputStream is = conn.getInputStream();//得到网络返回的输入流
                                         BufferedReader buf=new BufferedReader(new InputStreamReader(is));//转化为字符缓冲流
@@ -117,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //是否输入账号密码
                 if(username.getText().toString().length()>0&&password.getText().toString().length()>0){
-                    //子线程可以获取UI的值，不能更改
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -128,19 +125,17 @@ public class MainActivity extends AppCompatActivity {
                                 http_url=new URL(url);
                                 if(http_url!=null)
                                 {
-                                    //打开一个HttpURLConnection连接
+                                    //打开HttpURLConnection连接
                                     HttpURLConnection conn = (HttpURLConnection) http_url.openConnection();
                                     conn.setConnectTimeout(5* 1000);//设置连接超时
                                     conn.setRequestMethod("POST");//以get方式发起请求
-                                    //允许输入流
                                     conn.setDoInput(true);
-                                    //接收服务器响应
                                     if (conn.getResponseCode() == 200) {
                                         InputStream is = conn.getInputStream();//得到网络返回的输入流
                                         BufferedReader buf=new BufferedReader(new InputStreamReader(is));//转化为字符缓冲流
                                         data=buf.readLine();
                                         buf.close();is.close();
-                                        //判断登入结果
+                                        //判断注册结果
                                         analyse_register(data);
                                     }
                                 }
@@ -165,10 +160,8 @@ public class MainActivity extends AppCompatActivity {
             JSONObject json_data=new JSONObject(data);
             Boolean state=json_data.getBoolean("success");
             String msg=json_data.getString("msg");
-            //登入成功
-            if(state)
+            if(state)//登入成功
             {
-                //发送消息
                 Message message= new Message();
                 message.what=1;
                 Bundle temp = new Bundle();
@@ -176,8 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 message.setData(temp);
                 handler.sendMessage(message);
             }
-            //登入失败
-            else
+            else//登入失败
             {
                 Message message= new Message();
                 message.what=2;
@@ -196,8 +188,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject json_data=new JSONObject(data);
             Boolean state=json_data.getBoolean("success");
             String msg=json_data.getString("msg");
-            //注册成功
-            if(state)
+            if(state)//注册成功
             {
                 //发送消息
                 Message message= new Message();
@@ -207,8 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 message.setData(temp);
                 handler.sendMessage(message);
             }
-            //注册失败
-            else
+            else//注册失败
             {
                 Message message= new Message();
                 message.what=4;
